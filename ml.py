@@ -19,8 +19,8 @@ train.rename(columns={train_cols[i]:str(i) for i in range(len(train_cols))}, inp
 val_cols = list(val.columns)
 val.rename(columns={val_cols[i]:str(i) for i in range(len(val_cols))}, inplace=True)
 
-train_X = train[train.columns[1:len(train.columns) - 1]]
-val_X = val[val.columns[1:len(val.columns) - 1]]
+train_X = train[train.columns[1:len(train.columns) - 1]] / 255.0
+val_X = val[val.columns[1:len(val.columns) - 1]] / 255.0
 
 train_y = train['0']
 val_y = val['0']
