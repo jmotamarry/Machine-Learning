@@ -25,7 +25,7 @@ val_X = val[val.columns[1:len(val.columns) - 1]]
 train_y = train['0']
 val_y = val['0']
 
-rf_model = RandomForestRegressor(n_jobs=-1, n_estimators=20, random_state=1, verbose=2)
+rf_model = RandomForestRegressor(n_jobs=-1, n_estimators=60, random_state=1, verbose=2)
 
 choice = int(input("1 to train, 2 to load: "))
 file = 'data/' + input("Filename to load or dump: ")
@@ -35,9 +35,19 @@ if choice == 1:
     joblib.dump(rf_model, file)
     rf_val_predictions = rf_model.predict(val_X)
 
-else:
+elif choice == 2:
     loaded_rf = joblib.load(file)
     rf_val_predictions = loaded_rf.predict(val_X)
+
+"""
+else:
+    for i in range(50, 150, 30):
+        rf_model = RandomForestRegressor(n_jobs=-1, n_estimators=15, random_state=1, verbose=2)
+        rf_model.fit(train_X, train_y)
+        joblib.dump(rf_model, file)
+        rf_val_predictions = rf_model.predict(val_X)
+        print(str(i) + ': ' + str(mean_absolute_error(rf_val_predictions, val_y)))
+"""
 
 rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
 
