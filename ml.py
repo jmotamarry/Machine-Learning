@@ -5,7 +5,7 @@ import tf as tf
 from keras.models import Sequential
 from keras.layers import Dense, Conv2D, Flatten
 from keras.utils import to_categorical
-from tensorflow.python.estimator import keras
+from keras.models import load_model
 
 import matplotlib.pyplot as plt
 
@@ -89,7 +89,7 @@ model.add(Dense(10, activation='softmax'))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 choice = int(input("1 to train, 2 to load: "))
-file = 'data/' + input("Filename to load or dump: ") + '.keras'
+file = 'data/' + input("Filename to load or dump: ") + '.h5'
 
 if choice == 1:
     model.fit(train_X_array, train_y_array, validation_data=(val_X_array, val_y_array), epochs=3, verbose=1)
@@ -97,7 +97,7 @@ if choice == 1:
     cnn_predictions = model.predict(val_X_array)
 
 elif choice == 2:
-    ld_model = tf.keras.models.load_model(file)
+    ld_model = load_model(file)
     cnn_predictions = ld_model.predict(val_X_array)
 
 cnn_mae = mean_absolute_error(cnn_predictions, val_y_array)
