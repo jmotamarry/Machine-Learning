@@ -1,6 +1,6 @@
 # Machine-Learning
 MNIST Digit Recognition using Kaggle dataset: https://www.kaggle.com/datasets/rakuraku678/mnist-60000-hand-written-number-images?select=mnist_train.csv  
-
+  
   
 model_training.py is where the training the Random Forest and the CNN model on the Kaggle data happens  
 
