@@ -14,3 +14,4 @@ camera_testing.py is testing out the cv2 library
 data_science.py is random pandas code  
 
   
+The data directory has the parameters for both model types  
